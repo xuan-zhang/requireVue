@@ -1,0 +1,5 @@
+<div class="foo">
+    <h3 @click="fooClick">我是foo页面 {{ foo }}, {{name}}</h3>
+    <h4 @click="store.commit('increment')">store中的 {{store.state.name}} -- clickTimes {{store.state.count}}</h4>
+    <el-input v-model="foo" placeholder="请输入内容"></el-input>
+</div>

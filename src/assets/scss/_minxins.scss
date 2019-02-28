@@ -1,0 +1,218 @@
+@charset "UTF-8";
+@function per($num){
+  @return percentage($num);
+}
+
+@function rem($num){
+  @return $num/24 + rem;
+}
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+@mixin hover {
+  &:hover { @content; }
+}
+
+@mixin hover-focus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin plain-hover-focus {
+  &,
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin hover-focus-active {
+  &:hover,
+  &:focus,
+  &:active {
+    @content;
+  }
+}
+
+@mixin img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+@mixin bg($color) {
+  background: $color;
+}
+
+@mixin bg-center($url, $parent: transparent) {
+  background: url($url) center center no-repeat $parent;
+}
+
+@mixin bg-size($url,$widht:100%,$height:100%, $parent:transparent){
+  background: url($url) center center/$widht $height no-repeat $parent;
+}
+
+@mixin pxOne($argu) {
+  &::before {
+    content: "";
+    pointer-events: none; /* 防止点击触发 */
+    box-sizing: border-box;
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    left: 0;
+    top: 0;
+    border-radius: 8px;
+    border: 1px solid #999;
+    -webkit-transform: scale(0.5);
+    -webkit-transform-origin: 0 0;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+  }
+}
+
+@mixin pixel($px...) {
+  @content;
+  @media screen and (-webkit-min-device-pixel-ratio: 1.5) {
+    @content;
+    @include transform(scale(0.667));
+  }
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    @content;
+    @include transform(scale(0.5));
+  }
+  @media screen and (-webkit-min-device-pixel-ratio: 3) {
+    @content;
+    @include transform(scale(0.333));
+  }
+
+  @media screen and (min-device-pixel-ratio: 1.5) {
+    @content;
+    @include transform(scale(0.667));
+
+  }
+  @media screen and (min-device-pixel-ratio: 2) {
+    @content;
+    @include transform(scale(0.5));
+  }
+  @media screen and (min-device-pixel-ratio: 3) {
+    @content;
+    @include transform(scale(0.333));
+  }
+}
+
+@mixin placeholderIn() {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    // IE10+
+    @content;
+  }
+  &:-moz-placeholder {
+    // Firefox4-18
+    @content;
+  }
+  &::-moz-placeholder {
+    // Firefox19+
+    @content;
+  }
+}
+
+@mixin placeholderOut($name) {
+  #{$name}::-webkit-input-placeholder {
+    @content;
+  }
+
+  #{$name}:-ms-input-placeholder { // IE10+
+    @content;
+  }
+
+  #{$name}:-moz-placeholder { // Firefox4-18
+    @content;
+  }
+
+  #{$name}::-moz-placeholder { // Firefox19+
+    @content;
+
+  }
+
+}
+
+
+@mixin text-hide() {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+@mixin text-truncate($argu: null) {
+  @if not $argu {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @else {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $argu;
+    overflow: hidden;
+  }
+}
+
+@mixin tranformCenter() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+@mixin triangle($width, $height, $color, $direction) {
+  $width: $width/2;
+  $color-border-style: $height solid $color;
+  $transparent-border-style: $width solid transparent;
+  height: 0;
+  width: 0;
+  @if $direction==up {
+    border-bottom: $color-border-style;
+    border-left: $transparent-border-style;
+    border-right: $transparent-border-style;
+  }
+  @else if $direction==right {
+    border-left: $color-border-style;
+    border-top: $transparent-border-style;
+    border-bottom: $transparent-border-style;
+  }
+  @else if $direction==down {
+    border-top: $color-border-style;
+    border-left: $transparent-border-style;
+    border-right: $transparent-border-style;
+  }
+  @else if $direction==left {
+    border-right: $color-border-style;
+    border-top: $transparent-border-style;
+    border-bottom: $transparent-border-style;
+  }
+}
+
+@mixin scrollBar {
+  &::-webkit-scrollbar-track-piece {
+    background: #d3dce6;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #99a9bf;
+    border-radius: 20px;
+  }
+}
