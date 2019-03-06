@@ -1,5 +1,5 @@
 <div class="bar">
     <h3>这是新的Vue 实例，Bar -- {{name}}</h3>
     <el-button>GO TO BAR</el-button>
-    <h4 @click="store.commit('increment')">store中的 {{store.state.name}} -- clickTimes {{store.state.count}}</h4>
+    <h4 @click="$store.commit('increment')">store中的 {{$store.state.name}} -- clickTimes {{$store.state.count}}</h4>
 </div>

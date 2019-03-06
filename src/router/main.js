@@ -1,5 +1,8 @@
 define(function (require, exports, module) {
   const routes = require('./routes').route;
+  const Vue = require('vue');
+  const VueRouter = require('vueRouter');
+  Vue.use(VueRouter);
   const router = new VueRouter({
     routes,
     scrollBehavior: (to, from, savedPosition) => {
